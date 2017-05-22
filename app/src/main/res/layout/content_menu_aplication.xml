@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/content_main"
+    android:layout_height="match_parent"
+    android:background="#e0e0e0"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.jonhenry.userio.assistantevent.Presentacion.MenuAplication"
+    tools:showIn="@layout/app_bar_menu_aplication">
+
+ <!---   <fragment android:name="com.jonhenry.userio.assistantevent.Presentacion.FondoFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp"
+        android:id="@+id/inicioMenu"
+        class="com.jonhenry.userio.assistantevent.Presentacion.FondoFragment"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:layout="@layout/fragment_fondo">
+    </fragment>   -->
+
+
+
+</RelativeLayout>

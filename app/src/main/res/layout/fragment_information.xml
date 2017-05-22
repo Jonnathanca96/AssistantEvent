@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.jonhenry.userio.assistantevent.Presentacion.InformationFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Información"
+            android:textSize="28dp"
+            android:textColor="#020401"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <ImageView
+            android:id="@+id/icono"
+            android:layout_margin="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@+id/informacion"
+            app:srcCompat="@drawable/icono_informacion" />
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="@+id/icono"
+            android:layout_marginTop="160dp"
+            android:layout_marginLeft="@dimen/margen"
+            android:layout_marginRight="@dimen/margen"
+            android:layout_marginBottom="@dimen/mas_margen_para_boton"
+            android:transitionName="mostrar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/mostrar"
+                android:padding="@dimen/padding"
+                android:textSize="@dimen/texto_ayuda"
+                android:textColor="#000000"
+                android:text="@string/presentacion" />
+
+        </ScrollView>
+
+    </RelativeLayout>
+</FrameLayout>

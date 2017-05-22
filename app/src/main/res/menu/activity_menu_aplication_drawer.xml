@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_informacion"
+            android:icon="@drawable/icono_info"
+            android:title="Información" />
+
+        <item
+            android:id="@+id/nav_deportes"
+            android:icon="@drawable/icono_deportes"
+            android:title="Deportes" />
+
+        <item
+            android:id="@+id/nav_juegos"
+            android:icon="@drawable/icono_juego"
+            android:title="Video Juegos" />
+
+        <item
+            android:id="@+id/nav_musica"
+            android:icon="@drawable/icono_musica"
+            android:title="Música" />
+
+        <item
+            android:id="@+id/nav_teatro_danza"
+            android:icon="@drawable/icono_teatro"
+            android:title="Teatro-Danza" />
+
+        <item
+            android:id="@+id/nav_cerrar_sesion"
+            android:icon="@drawable/icono_logout"
+            android:title="Cerrar Sesión" />
+
+    </group>
+    <!--
+        <item android:title="Communicate">
+            <menu>
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/ic_menu_share"
+                    android:title="Share" />
+                <item
+                    android:id="@+id/nav_send"
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="Send" />
+            </menu>
+        </item>-->
+
+
+    </menu>
