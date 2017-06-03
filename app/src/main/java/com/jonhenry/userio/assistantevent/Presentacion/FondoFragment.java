@@ -12,20 +12,17 @@ import com.jonhenry.userio.assistantevent.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InformationFragment extends Fragment {
+public class FondoFragment extends Fragment {
 
 
-    public InformationFragment() {
+    public FondoFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_information, container, false);
+        return inflater.inflate(R.layout.fragment_fondo, container, false);
     }
 
 }

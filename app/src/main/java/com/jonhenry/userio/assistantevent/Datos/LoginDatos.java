@@ -2,8 +2,8 @@ package com.jonhenry.userio.assistantevent.Datos;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,10 +16,9 @@ import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.jonhenry.userio.assistantevent.Datos.LoginDatos;
-
 import com.jonhenry.userio.assistantevent.MainActivity;
 import com.jonhenry.userio.assistantevent.R;
+
 
 public class LoginDatos extends AppCompatActivity {
 
@@ -29,7 +28,19 @@ public class LoginDatos extends AppCompatActivity {
     private String foto;
     private String nombre;
     private String datos;
-    TextView informacion;
+    private TextView informacion;
+    private String token;
+
+    /**
+     * Comprueba si el usuario ha iniciado sesión en Facebook y el
+     * token de acceso está activo
+     *
+     * @return
+     */
+    public static boolean isLoggedIn() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return (accessToken != null) && (!accessToken.isExpired());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +62,13 @@ public class LoginDatos extends AppCompatActivity {
                 {
                         @Override
                         public void onSuccess(LoginResult loginResult) {
-                            /*Obtener los datos del usuario*/
-                            usuario=Profile.getCurrentProfile();
+                           /*Obtener los datos del usuario*/
+
+                            usuario = Profile.getCurrentProfile();
 
                             nombre = usuario.getName();
+
+                            token = loginResult.getAccessToken().getToken();
 
                             Uri urlImagen = usuario.getProfilePictureUri(150, 150);
 
@@ -62,7 +76,10 @@ public class LoginDatos extends AppCompatActivity {
 
                             makeToast("Bienvenido: "+nombre);
 
-                            goMainActivity();//para ir al menu de las opciones
+                            AccesoUsuario usuario = new AccesoUsuario(callbackManager, loginButton);
+
+                            goMainActivity();//para ir al menu de las opciones */
+
                         }
 
                         @Override
@@ -75,17 +92,6 @@ public class LoginDatos extends AppCompatActivity {
                             makeToast("Login error. No hay Acceso a Internet!.");
                         }
                 });
-    }
-
-
-    /**
-     * Comprueba si el usuario ha iniciado sesión en Facebook y el
-     token de acceso está activo
-     * @return
-     */
-    public static boolean isLoggedIn() {
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        return (accessToken != null) && (!accessToken.isExpired());
     }
 
     /**
@@ -128,8 +134,9 @@ public class LoginDatos extends AppCompatActivity {
         Intent intent =new Intent(this, MainActivity.class);
         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("NOMBRE",nombre);
-        intent.putExtra("FOTO",foto);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("FOTO", foto);
+        intent.putExtra("TOKEN", token);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

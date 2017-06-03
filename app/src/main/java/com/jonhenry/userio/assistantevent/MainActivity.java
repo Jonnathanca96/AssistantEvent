@@ -1,27 +1,24 @@
 package com.jonhenry.userio.assistantevent;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.jonhenry.userio.assistantevent.Datos.LoginDatos;
 import com.jonhenry.userio.assistantevent.Presentacion.MenuAplication;
 
 public class MainActivity extends AppCompatActivity {
+    private static boolean fueInicio = false;
+    private static boolean salida = false;
+    Toast toast;
     private Bundle usuario;
-
     private boolean quiereSalir=false;
-
     private  String nombre=null;
-
     private  String urlFoto=null;
-
-    private static boolean fueInicio=false;
-
-    private  static boolean salida=false;
-
     private String valor;
+
+    private String token;
 
     private String mensaje;
 
@@ -31,21 +28,26 @@ public class MainActivity extends AppCompatActivity {
 
         valor=String.valueOf(nombre);
 
-        Log.v(mensaje,valor);
-
         if(fueInicio){//Para poder saber si ya tiene la informacin que se necesita
+
             usuario=getIntent().getExtras();
 
             nombre=usuario.getString("NOMBRE");
 
             urlFoto=usuario.getString("FOTO");
+
+            token = usuario.getString("TOKEN");
+
+            /*Uri uriUrl = Uri.parse("https://www.facebook.com/events/upcoming");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uriUrl);
+            startActivity(intent);*/
+
         }
+
 
         if(nombre==null&&urlFoto==null)
         {
             fueInicio=true;
-
-            Log.v(mensaje,"SI PASO");
 
             goLoginDatos();
 
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void goLoginDatos(){//Para poder ir a la actividad que registra el inicio de sesion
+    private void goLoginDatos() {//Para poder ir a la actividad que registra el inicio de sesion
         Intent intent =new Intent(this, LoginDatos.class);
         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -83,7 +85,13 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public void gomenu(){
+
+    private void makeToast(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+    }
+
+
+    private void gomenu() {
         Intent intent = new Intent(this,MenuAplication.class);
         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("NOMBRE",nombre);

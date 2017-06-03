@@ -13,42 +13,43 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.jonhenry.userio.assistantevent.MainActivity;
 import com.jonhenry.userio.assistantevent.R;
 import com.squareup.picasso.Picasso;
 
 public class MenuAplication extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ImageView foto;
-
     private static boolean salir;
-
     private static Bundle bundle;
-
     private static String nombre;
-
     private static String url_foto;
+    Fragment fragment;
+    private ImageView foto;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_aplication);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Assistan Events");
+        setTitle("Assistan Event");
+
 
         bundle=getIntent().getExtras();
         nombre=bundle.getString("NOMBRE");
         url_foto=bundle.getString("FOTO");
 
-
-
-/*Es codigo del boton flotante
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//Es codigo del boton flotante
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +63,8 @@ public class MenuAplication extends AppCompatActivity implements NavigationView.
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 /*Para poder modificar el nombr del usuario
@@ -80,70 +82,69 @@ public class MenuAplication extends AppCompatActivity implements NavigationView.
         DescargaImagen mostrar =new DescargaImagen();
         mostrar.execute();
 
-
     }
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
+
     }
-/*
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_aplication, menu);
         return true;
-    }*/
+    }
 
     /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            // Handle action bar item clicks here. The action bar will
+            // automatically handle clicks on the Home/Up button, so long
+            // as you specify a parent activity in AndroidManifest.xml.
+            int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.action_settings) {
+                return true;
+            }
+
+            return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
+    */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.4
-        Fragment fragment=null;
+        fragment = new FondoFragment();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
+        item.setChecked(true);
+
         boolean FragmentTransaction=false;
         int id = item.getItemId();
 
-
-        if (id == R.id.nav_deportes) {
+        if (id == R.id.nav_busqueda) {
 
             FragmentTransaction=true;
-            // Handle the camera action
-        } else if (id == R.id.nav_juegos) {
-            FragmentTransaction=true;
+            fragment = new FragmentWebView();
 
-        } else if (id == R.id.nav_musica) {
-            FragmentTransaction=true;
+        } else if (id == R.id.nav_informacion) {
 
-        } else if (id == R.id.nav_teatro_danza) {
             FragmentTransaction=true;
+            fragment = new InformationFragment();
 
         } else if (id == R.id.nav_cerrar_sesion) {
+
             goMainActivity();
 
-        }else if(id==R.id.nav_informacion){
-            FragmentTransaction=true;
-            fragment=new InformationFragment();
         }
 
         if (FragmentTransaction){
@@ -152,18 +153,13 @@ public class MenuAplication extends AppCompatActivity implements NavigationView.
             getSupportActionBar().setTitle(item.getTitle());
         }
 
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-
-
-
     }
 
 
-    public void goMainActivity(){
+    private void goMainActivity() {
         Intent intent= new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -20,4 +20,5 @@
     <dimen name="texto_boton">24sp</dimen>
 
     <dimen name="mas_margen_para_boton">60dp</dimen>
+
 </resources>

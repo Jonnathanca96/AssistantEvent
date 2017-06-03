@@ -20,21 +20,17 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".Datos.LoginDatos"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".Presentacion.MenuAplication"
             android:label="@string/title_activity_menu_aplication"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

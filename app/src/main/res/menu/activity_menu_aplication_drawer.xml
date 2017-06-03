@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
@@ -11,24 +8,9 @@
             android:title="Información" />
 
         <item
-            android:id="@+id/nav_deportes"
-            android:icon="@drawable/icono_deportes"
-            android:title="Deportes" />
-
-        <item
-            android:id="@+id/nav_juegos"
-            android:icon="@drawable/icono_juego"
-            android:title="Video Juegos" />
-
-        <item
-            android:id="@+id/nav_musica"
-            android:icon="@drawable/icono_musica"
-            android:title="Música" />
-
-        <item
-            android:id="@+id/nav_teatro_danza"
-            android:icon="@drawable/icono_teatro"
-            android:title="Teatro-Danza" />
+            android:id="@+id/nav_busqueda"
+            android:icon="@drawable/busqueda_info"
+            android:title="Buscar" />
 
         <item
             android:id="@+id/nav_cerrar_sesion"
