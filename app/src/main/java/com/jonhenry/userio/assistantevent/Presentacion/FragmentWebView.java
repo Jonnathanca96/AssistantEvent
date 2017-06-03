@@ -1,12 +1,12 @@
 package com.jonhenry.userio.assistantevent.Presentacion;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.facebook.CallbackManager;
@@ -28,29 +28,20 @@ public class FragmentWebView extends Fragment {
     private CallbackManager callbackManager;
     private LoginButton loginButton;
     private View v;
-
     public FragmentWebView() {
-
-        // Required empty public constructor
 
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragmen
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
         FacebookSdk.sdkInitialize(getApplicationContext());
-        v = inflater.inflate(R.layout.fragment_fragment_web_view, container, false);
-        //Inicializar Facebook SDK;
-        //Debe hacer el proceso de ingreso desde cero el objeto creado
-        // Establecer las devoluciones de llamada
         callbackManager = AccesoUsuario.getCallbackManager();
         loginButton = AccesoUsuario.getLoginButton();
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                           /*Obtener los datos del usuario*/
+
 
             }
 
@@ -65,24 +56,22 @@ public class FragmentWebView extends Fragment {
             }
         });
 
+        v = inflater.inflate(R.layout.fragment_fragment_web_view, container, false);
+        webView = (WebView) v.findViewById(R.id.MwebView);
+        webView.loadUrl("https://www.facebook.com/events/upcoming");
 
-        webView = (WebView) v.findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://www.facebook.com/events");
-        /*webView.setWebViewClient(new WebViewClient(){public boolean shouldOverrideUrlLoading(WebView view, String url){
-                                         return false;
-                                     }
-                                 }
-        );*/
+        // Enable Javascript
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
 
+        // Force links and redirects to open in the WebView instead of in a browser
+        //webView.setWebViewClient(new WebViewClient());
 
         return v;
     }
 
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
 
 }
+
+

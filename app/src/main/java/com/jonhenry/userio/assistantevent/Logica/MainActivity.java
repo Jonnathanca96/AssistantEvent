@@ -1,4 +1,4 @@
-package com.jonhenry.userio.assistantevent;
+package com.jonhenry.userio.assistantevent.Logica;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,10 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
             token = usuario.getString("TOKEN");
 
-            /*Uri uriUrl = Uri.parse("https://www.facebook.com/events/upcoming");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uriUrl);
-            startActivity(intent);*/
-
         }
 
 
@@ -71,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
             salida=true;
 
-
             goLoginDatos();
         }
 
@@ -93,10 +88,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void gomenu() {
         Intent intent = new Intent(this,MenuAplication.class);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("NOMBRE",nombre);
         intent.putExtra("FOTO",urlFoto);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
 
     }

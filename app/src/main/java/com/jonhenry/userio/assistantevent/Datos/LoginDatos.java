@@ -16,7 +16,7 @@ import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.jonhenry.userio.assistantevent.MainActivity;
+import com.jonhenry.userio.assistantevent.Logica.MainActivity;
 import com.jonhenry.userio.assistantevent.R;
 
 
@@ -132,11 +132,10 @@ public class LoginDatos extends AppCompatActivity {
 
     public void goMainActivity(){
         Intent intent =new Intent(this, MainActivity.class);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("NOMBRE",nombre);
         intent.putExtra("FOTO", foto);
         intent.putExtra("TOKEN", token);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
