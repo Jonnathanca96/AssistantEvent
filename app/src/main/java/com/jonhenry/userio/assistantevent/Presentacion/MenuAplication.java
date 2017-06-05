@@ -146,7 +146,7 @@ public class MenuAplication extends AppCompatActivity implements NavigationView.
 
         fragmentManager = getSupportFragmentManager();
 
-        fragmentManager.beginTransaction().replace(R.id.content_main, new InformationFragment()).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_main, new FondoFragment()).commit();
 
         drawer.closeDrawer(GravityCompat.START);
 
